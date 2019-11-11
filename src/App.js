@@ -6,19 +6,17 @@ import STORE from './store';
 const store = STORE.STORE;
 
 function App() {
-  console.log( store )
 
-  let lists = store.lists.map( ( l ) => {
-    return List.list( l.header, l.cardIds, l.id )
-  } )
-
-  console.log( lists )
+  let lists = store.lists.map( list => {
+    let id = list.cardIds.map( id => store.allCards[ id ] );
+    return <List key={list.id} header={list.header} cards={id}/>
+  } );
 
   return ( <div className="App">
     <header className="App-header">
       <h1>Trelloyes!</h1>
     </header>
-    <div className="App-list"></div>
+    <div className="App-list">{lists}</div>
   </div> );
 }
 

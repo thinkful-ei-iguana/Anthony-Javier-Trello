@@ -1,25 +1,25 @@
 import React from 'react';
 import Card from './Card';
-import STORE from './store';
-const s = STORE.STORE.allCards;
+import './styles/list.min.css';
 
-function list( header, cards ) {
+export default function List( props ) {
 
-  let cardsList = cards.map( ( card ) => {
-    let title = s[ card ].title
-    let content = s[ card ].content
-    let key = s[ card ].id
-    return <> Card.cards( title, content, key )</>
+  console.log( props )
+
+  let cardsList = props.cards.map( ( card ) => {
+    return <Card title={card.title} content={card.content} key={card.id}/>
   } )
 
   return ( <section className='List'>
-    <header>
-      {header}
+    <header className='List-header'>
+      {props.header}
     </header>
     <div className='List-cards'>
-      {cardsList}</div>
+      {cardsList}
+      <button className='List-add-button'>
+        + Add random card
+      </button>
+    </div>
 
   </section> );
 }
-
-export default { list }

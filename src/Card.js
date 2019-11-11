@@ -1,10 +1,10 @@
 import React from 'react';
+import './styles/card.min.css';
 
-function cards( title, content, key ) {
-  return ( <div key={key} id={key} className='Card'>
-    <h3>{title}</h3>
-    <p>{content}</p>
+export default function cards( props ) {
+  return ( <div className='Card'>
+    <button type="button">delete</button>
+    <h3>{props.title}</h3>
+    <p>{props.content}</p>
   </div> );
 }
-
-export default { cards }
