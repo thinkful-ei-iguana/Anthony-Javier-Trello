@@ -1,14 +1,10 @@
 import React from 'react';
-import STORE from './store';
-function cards(title,content){
-    return (
-        <div className='Card'>
-            <h3></h3>
-            <p></p>
-        </div>
-    );
+
+function cards( title, content, key ) {
+  return ( <div key={key} id={key} className='Card'>
+    <h3>{title}</h3>
+    <p>{content}</p>
+  </div> );
 }
 
-export default {
-    cards,
-}
+export default { cards }
