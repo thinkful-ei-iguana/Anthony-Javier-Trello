@@ -11,6 +11,21 @@ function omit(obj, keyToOmit) {
   );
 }
 
+const newRandomCard = () => {
+  const id =
+    Math.random()
+      .toString(36)
+      .substring(2, 4) +
+    Math.random()
+      .toString(36)
+      .substring(2, 4);
+  return {
+    id,
+    title: `Random Card ${id}`,
+    content: "lorem ipsum"
+  };
+};
+
 class App extends React.Component {
   state = STORE.STORE;
 
@@ -22,6 +37,22 @@ class App extends React.Component {
 
     const newCards = omit(this.state.allCards, cardId);
 
+    this.setState({
+      lists: newLists,
+      allCards: newCards
+    });
+  };
+
+  addCard = listId => {
+    const newCards = newRandomCard();
+    const newLists = this.state.lists.map(list => {
+      if (list.id === listId) {
+        return {
+          ...list,
+          cardIds: newCards.id
+        };
+      }
+    });
     this.setState({
       lists: newLists,
       allCards: newCards
@@ -43,6 +74,7 @@ class App extends React.Component {
                 header={list.header}
                 cards={list.cardIds.map(id => this.state.allCards[id])}
                 onClick={this.deleteCard}
+                addClick={this.addCard}
               />
             );
           })}

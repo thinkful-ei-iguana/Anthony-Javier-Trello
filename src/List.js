@@ -18,7 +18,12 @@ function List(props) {
             />
           );
         })}
-        <button className="List-add-button">+ Add random card</button>
+        <button
+          className="List-add-button"
+          onClick={() => props.addClick(props.id)}
+        >
+          + Add random card
+        </button>
       </div>
     </section>
   );
