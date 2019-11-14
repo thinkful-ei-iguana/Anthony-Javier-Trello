@@ -3,7 +3,6 @@ import Card from "./Card";
 import "./styles/list.min.css";
 
 function List(props) {
-  console.log(props);
   return (
     <section className="List">
       <header className="List-header">{props.header}</header>

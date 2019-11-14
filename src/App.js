@@ -3,37 +3,30 @@ import "./App.css";
 import List from "./List";
 import STORE from "./store";
 
-
-
 function omit(obj, keyToOmit) {
-  return Object.entries(obj).reduce( (newObj, [key, value]) => key === keyToOmit ? newObj : {...newObj, [key]: value}, {} ); }
+  return Object.entries(obj).reduce(
+    (newObj, [key, value]) =>
+      key === keyToOmit ? newObj : { ...newObj, [key]: value },
+    {}
+  );
+}
 
 class App extends React.Component {
   state = STORE.STORE;
 
-
-  deleteCard = (cardId) => {
+  deleteCard = cardId => {
     const newLists = this.state.lists.map(list => ({
-        ...list,
-        cardIds: list.cardIds.filter(id => id !==cardId)
-
+      ...list,
+      cardIds: list.cardIds.filter(id => id !== cardId)
     }));
-    console.log('button clicked')
-    console.log(newLists)
 
-    const newCards = omit(this.state.allCards,cardId)
-
+    const newCards = omit(this.state.allCards, cardId);
 
     this.setState({
-      STORE: {
-        lists: newLists,
-        allCards: newCards,
-      }
-    })
-
-
-  }
-
+      lists: newLists,
+      allCards: newCards
+    });
+  };
 
   render() {
     return (
