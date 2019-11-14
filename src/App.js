@@ -51,8 +51,11 @@ class App extends React.Component {
           ...list,
           cardIds: [...list.cardIds, newCards.id]
         };
+      } else {
+        return list;
       }
     });
+    console.log(newLists);
     this.setState({
       lists: newLists,
       allCards: {
