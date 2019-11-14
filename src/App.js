@@ -49,13 +49,16 @@ class App extends React.Component {
       if (list.id === listId) {
         return {
           ...list,
-          cardIds: newCards.id
+          cardIds: [...list.cardIds, newCards.id]
         };
       }
     });
     this.setState({
       lists: newLists,
-      allCards: newCards
+      allCards: {
+        ...this.state.allCards,
+        [newCards.id]: newCards
+      }
     });
   };
 
